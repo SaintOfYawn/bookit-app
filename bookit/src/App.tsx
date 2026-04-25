@@ -1,10 +1,10 @@
 import './App.css'
-
+import Header from './components/header'
 function App() {
 
   return (
     <>
-    <div className='bg-blue-500' >123</div>
+      <Header />
     </>
   )
 }
