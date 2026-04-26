@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import avatar from '../assets/avatar.png'
 export default function Header() {
 
 	const [searchTerm, setSearchTerm] = useState('')
@@ -6,7 +7,7 @@ export default function Header() {
 	const Search = Object.search(searchTerm)
 	return (
 		<>
-			<div className="main bg-[#0f1629] h-screen">
+			<div className="main bg-[#0f1629] h-full">
 				{/* Заголовок */}
 				<section>
 					{/* Текст для mobile */}
@@ -23,7 +24,7 @@ export default function Header() {
 				</section>
 				{/* Секция поиска */}
 				<form className=''>
-					<div className="bg-white/5 mx-4 rounded-xl px-4 py-2 flex flex-col md:flex-row gap-4">
+					<div className="bg-white/5 mx-4 rounded-xl px-4 py-2 flex flex-col md:flex-row gap-2">
 
 						<div className="search flex mt-2">
 							<input type="text" onChange={e => setSearchTerm(e.target.value)}
@@ -45,6 +46,61 @@ export default function Header() {
 						</div>
 					</div>
 				</form>
+				<div className="hoste flex flex-col md:flex-row gap-4 mt-10 items-center justify-center">
+					<div className="bg-[#1a2035] rounded-2xl overflow-hidden w-72 shadow-xl border border-white/10">
+						{/* Картинка */}
+						<div className="w-full h-44 overflow-hidden">
+							<img src={avatar} alt="space" className="w-full h-full object-cover" />
+						</div>
+						{/* Контент */}
+						<div className="p-4 flex flex-col gap-2">
+							{/* Название */}
+							<h2 className="text-white text-base font-bold leading-tight">
+								Modern Co-Working Space
+							</h2>
+							{/* Локация */}
+							<div className="flex items-center gap-1 text-[#8b93a8] text-xs">
+								<span>📍</span>
+								<span>Downtown Manhattan</span>
+							</div>
+
+							{/* Рейтинг */}
+							<div className="flex items-center gap-1 text-xs">
+								<span className="text-[#f5a623]">⭐</span>
+								<span className="text-[#f5a623] font-semibold">4.9</span>
+								<span className="text-[#8b93a8]">(124 reviews)</span>
+							</div>
+
+							{/* Удобства */}
+							<div className="flex items-center gap-2 flex-wrap mt-1">
+								{["WiFi", "Projector", "Coffee"].map((item) => (
+									<div key={item}
+										className="flex items-center gap-1 text-[#8b93a8] text-xs
+          border border-white/10 rounded-lg px-2 py-1 bg-white/5">
+										<span>{item === "WiFi" ? "📶" : item === "Projector" ? "🖥" : "☕"}</span>
+										<span>{item}</span>
+									</div>
+								))}
+							</div>
+
+							{/* Разделитель */}
+							<hr className="border-white/10 mt-1" />
+
+							{/* Цена + кнопка */}
+							<div className="flex items-center justify-between mt-1">
+								<div className="text-white text-lg font-bold">
+									<span className="text-[#f5a623]">$45</span>
+									<span className="text-[#8b93a8] text-xs font-normal">/hour</span>
+								</div>
+								<button className="bg-[#f5a623] text-[#0f1629] text-sm font-bold
+        px-4 py-2 rounded-xl hover:bg-[#e09610] transition active:scale-95">
+									Book now
+								</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	)
