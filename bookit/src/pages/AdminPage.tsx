@@ -9,13 +9,16 @@ interface Listing {
 	price_per_night: number
 	max_guests: number
 	description: string
+	image_url: string
+	amenities: string
 }
 
 export default function AdminPage() {
 	const [listings, setListings] = useState<Listing[]>([])
 	const [form, setForm] = useState({
-		title: "", city: "", category: "apartment",
-		price_per_night: "", max_guests: "2", description: "",
+		title: '', city: '', category: 'apartment',
+		price_per_night: '', max_guests: '2',
+		description: '', image_url: '', amenities: '',
 	})
 
 	const set = (key: keyof typeof form) =>
@@ -29,7 +32,7 @@ export default function AdminPage() {
 			max_guests: parseInt(form.max_guests),
 		})
 		setListings((prev) => [res.data, ...prev])
-		setForm({ title: "", city: "", category: "apartment", price_per_night: "", max_guests: "2", description: "" })
+		setForm({ title: '', city: '', category: 'apartment', price_per_night: '', max_guests: '2', description: '', image_url: '', amenities: '' })
 	}
 
 	return (
@@ -40,26 +43,17 @@ export default function AdminPage() {
 				<div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
 					<div>
 						<label className="block text-sm text-gray-600 mb-1">Название</label>
-						<input
-							className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-							value={form.title} onChange={set("title")} placeholder="Уютная студия в центре"
-						/>
+						<input className={inp} value={form.title} onChange={set('title')} placeholder="Уютная студия" />
 					</div>
 
 					<div className="grid grid-cols-2 gap-3">
 						<div>
 							<label className="block text-sm text-gray-600 mb-1">Город</label>
-							<input
-								className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-								value={form.city} onChange={set("city")} placeholder="Vienna"
-							/>
+							<input className={inp} value={form.city} onChange={set('city')} placeholder="Vienna" />
 						</div>
 						<div>
 							<label className="block text-sm text-gray-600 mb-1">Категория</label>
-							<select
-								className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-								value={form.category} onChange={set("category")}
-							>
+							<select className={inp} value={form.category} onChange={set('category')}>
 								<option value="apartment">Apartment</option>
 								<option value="house">House</option>
 								<option value="hotel">Hotel</option>
@@ -70,26 +64,28 @@ export default function AdminPage() {
 					<div className="grid grid-cols-2 gap-3">
 						<div>
 							<label className="block text-sm text-gray-600 mb-1">Цена / ночь (€)</label>
-							<input
-								className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-								type="number" value={form.price_per_night} onChange={set("price_per_night")} placeholder="89"
-							/>
+							<input className={inp} type="number" value={form.price_per_night} onChange={set('price_per_night')} placeholder="89" />
 						</div>
 						<div>
 							<label className="block text-sm text-gray-600 mb-1">Макс. гостей</label>
-							<input
-								className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"
-								type="number" value={form.max_guests} onChange={set("max_guests")} placeholder="2"
-							/>
+							<input className={inp} type="number" value={form.max_guests} onChange={set('max_guests')} placeholder="2" />
 						</div>
+					</div>
+
+					{/* Новые поля */}
+					<div>
+						<label className="block text-sm text-gray-600 mb-1">Ссылка на изображение</label>
+						<input className={inp} value={form.image_url} onChange={set('image_url')} placeholder="https://images.unsplash.com/..." />
+					</div>
+
+					<div>
+						<label className="block text-sm text-gray-600 mb-1">Удобства (через запятую)</label>
+						<input className={inp} value={form.amenities} onChange={set('amenities')} placeholder="WiFi, Parking, Pool" />
 					</div>
 
 					<div>
 						<label className="block text-sm text-gray-600 mb-1">Описание</label>
-						<textarea
-							className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500 resize-none"
-							rows={3} value={form.description} onChange={set("description")} placeholder="Коротко об объекте..."
-						/>
+						<textarea className={`${inp} resize-none`} rows={3} value={form.description} onChange={set('description')} placeholder="Коротко об объекте..." />
 					</div>
 
 					<button
@@ -103,10 +99,11 @@ export default function AdminPage() {
 				{listings.length > 0 && (
 					<div className="mt-6 space-y-2">
 						{listings.map((l) => (
-							<div key={l.id} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex justify-between items-center">
-								<div>
+							<div key={l.id} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex justify-between items-center gap-3">
+								{l.image_url && <img src={l.image_url} className="w-12 h-12 rounded-lg object-cover" />}
+								<div className="flex-1">
 									<p className="text-sm font-medium text-gray-800">{l.title}</p>
-									<p className="text-xs text-gray-400">{l.city} · {l.category}</p>
+									<p className="text-xs text-gray-400">{l.city} · {l.amenities}</p>
 								</div>
 								<span className="text-sm font-semibold text-gray-700">€{l.price_per_night}</span>
 							</div>
@@ -117,3 +114,5 @@ export default function AdminPage() {
 		</div>
 	)
 }
+
+const inp = "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-500"

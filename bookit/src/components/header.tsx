@@ -1,21 +1,27 @@
+import { Link } from 'react-router-dom'
 import avatar from '../assets/avatar.png'
 import logo from '../assets/logo.png'
 import Search from './search'
+
 export default function Header() {
 	return (
 		<>
 			<nav className='bg-[#0f1629]' >
-				<div className="flex justify-between  gap-4 mx-8 py-4 md:px-30">
+				<div className="flex justify-between gap-4 mx-8 py-4 md:px-30 items-center">
 
 					<div className="logotip flex flex-row items-center gap-2">
 						<div className="img-logo w-8"><img className='rounded-xl' src={logo} alt="Logo" /></div>
-						<div className="logo text-lg font-semibold text-white">Bookit</div>
+						<Link to="/" className="logo text-lg font-semibold text-white hover:text-[#f5a623] transition">Bookit</Link>
 					</div>
-					<div className="hidden md:block">
+
+					<div className="hidden md:flex items-center gap-6">
+						<Link to="/" className="text-white hover:text-[#f5a623] transition font-medium">Home</Link>
+						<Link to="/admin" className="text-white hover:text-[#f5a623] transition font-medium">Admin</Link>
 						<Search />
 					</div>
-					<div className="accoutn  flex flex-row items-center gap-4">
-						<div className="acc-name text-zinc-400" >Azizbek</div>
+
+					<div className="accoutn flex flex-row items-center gap-4">
+						<div className="acc-name text-zinc-400">Azizbek</div>
 						<div className="acc-image bg-gray-500 rounded-full px-2 py-2 w-9 h-9"><img src={avatar} alt="Avatar" /></div>
 					</div>
 				</div>

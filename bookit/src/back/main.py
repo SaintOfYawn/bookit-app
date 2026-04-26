@@ -15,7 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# БД
 engine = create_engine("sqlite:///./booking.db")
 SessionLocal = sessionmaker(bind=engine)
 
@@ -24,17 +23,18 @@ class Base(DeclarativeBase):
 
 class Listing(Base):
     __tablename__ = "listings"
-    id               = Column(Integer, primary_key=True)
-    title            = Column(String)
-    city             = Column(String)
-    category         = Column(String)
-    price_per_night  = Column(Float)
-    max_guests       = Column(Integer)
-    description      = Column(String, default="")
+    id              = Column(Integer, primary_key=True)
+    title           = Column(String)
+    city            = Column(String)
+    category        = Column(String)
+    price_per_night = Column(Float)
+    max_guests      = Column(Integer)
+    description     = Column(String, default="")
+    image_url       = Column(String, default="")       # ← новое
+    amenities       = Column(String, default="")       # ← новое (храним как "WiFi,Coffee,Projector")
 
 Base.metadata.create_all(engine)
 
-# Схемы
 class ListingCreate(BaseModel):
     title: str
     city: str
@@ -42,13 +42,14 @@ class ListingCreate(BaseModel):
     price_per_night: float
     max_guests: int
     description: Optional[str] = ""
+    image_url: Optional[str] = ""
+    amenities: Optional[str] = ""      # строка через запятую
 
 class ListingOut(ListingCreate):
     id: int
     class Config:
         from_attributes = True
 
-# Роуты
 @app.get("/listings/", response_model=list[ListingOut])
 def get_listings(city: str = None, category: str = None):
     db: Session = SessionLocal()
