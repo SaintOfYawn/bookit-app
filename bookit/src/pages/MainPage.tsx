@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import API from '../API/api'
 import avatar from '../assets/avatar.png'
-export default function Header() {
+export default function MainPage() {
 
 	const [searchTerm, setSearchTerm] = useState('')
-	const [Object, setObject] = useState('')
-	const Search = Object.search(searchTerm)
+	const [alllistings, setAllListings] = useState([])
+	useEffect(() => {
+		API.get("/listings/").then(res => setAllListings(res.data))
+	}, [])
 	return (
 		<>
 			<div className="main bg-[#0f1629] h-full">
@@ -46,6 +49,8 @@ export default function Header() {
 						</div>
 					</div>
 				</form>
+
+				{/* Тестовая секция карточки, потом вынести */}
 				<div className="hoste flex flex-col md:flex-row gap-4 mt-10 items-center justify-center">
 					<div className="bg-[#1a2035] rounded-2xl overflow-hidden w-72 shadow-xl border border-white/10">
 						{/* Картинка */}
@@ -100,6 +105,17 @@ export default function Header() {
 
 						</div>
 					</div>
+				</div>
+				<div className="list">
+					{alllistings.map((l) => (
+						<div key={l.id} className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex justify-between items-center">
+							<div>
+								<p className="text-sm font-medium text-gray-800">{l.title}</p>
+								<p className="text-xs text-gray-400">{l.city} · {l.category}</p>
+							</div>
+							<span className="text-sm font-semibold text-gray-700">€{l.price_per_night}</span>
+						</div>
+					))}
 				</div>
 			</div>
 		</>
