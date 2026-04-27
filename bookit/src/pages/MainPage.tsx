@@ -142,14 +142,12 @@ export default function MainPage() {
 
 									{/* Удобства */}
 									<div className="flex items-center gap-2 flex-wrap mt-1">
-										{["WiFi", "Coffee"].map((item) => (
-											<div key={item}
-												className="flex items-center gap-1 text-[#8b93a8] text-xs
+										<div
+											className="flex items-center gap-1 text-[#8b93a8] text-xs
           border border-white/10 rounded-lg px-2 py-1 bg-white/5">
-												<span>{item === "WiFi" ? "📶" : "☕"}</span>
-												<span>{item}</span>
-											</div>
-										))}
+											<span>{l.amenities}</span>
+											<span>{l.amenities}</span>
+										</div>
 									</div>
 
 									{/* Разделитель */}
