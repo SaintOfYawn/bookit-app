@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import API from '../API/api'
+import checkmark from '../assets/checkmark.png'
+import lupa from '../assets/lupa.png'
+import time from '../assets/time.png'
 export default function MainPage() {
 	interface Listing {
 		id: number
@@ -19,9 +22,9 @@ export default function MainPage() {
 	}, [])
 	return (
 		<>
-			<div className="main bg-[#0f1629] min-h-screen">
+			<div className="main bg-[#12192c] min-h-screen">
 				{/* Заголовок */}
-				<section>
+				<section className='' >
 					{/* Текст для mobile */}
 					<div className="h1 text-white md:hidden text-5xl font-bold text-center pt-40">
 						<p>Book <br /> anything.<br /> <span className='text-[#f5a623]' >Instantly.</span> </p>
@@ -35,7 +38,7 @@ export default function MainPage() {
 					</div>
 				</section>
 				{/* Секция поиска */}
-				<form className='w-full'>
+				<form className='w-full mb-20'>
 					<div className="bg-white/5 mx-4 md:mx-auto border border-gray-700 rounded-xl px-3 py-3 md:px-4 md:py-4 flex flex-col gap-4 items-center max-w-3xl">
 						<div className="flex flex-col md:flex-row gap-3 w-full justify-between items-center">
 							<div className="search flex w-full md:w-auto">
@@ -55,7 +58,7 @@ export default function MainPage() {
 								</select>
 							</div>
 						</div>
-						<div className="buttin flex justify-center w-full">
+						<div className="buttin flex justify-center  w-full">
 							<button className='rounded-xl px-8 py-3 text-lg border font-semibold text-black bg-[#f5a623] w-full'>Find & Book</button>
 						</div>
 					</div>
@@ -126,6 +129,79 @@ export default function MainPage() {
 						))}
 					</div>
 				</div>
+				<section>
+					<div className="content flex mt-20 text-white flex-col text-center">
+						<h1 className='text-4xl font-semibold' >How it works</h1>
+						<p className='text-zinc-500 mt-4' >Book your perfect space in three simple steps</p>
+					</div>
+					<div className="steps flex flex-col md:flex-row gap-8 justify-center items-center max-w-5xl mx-auto mt-10">
+						<div className="step flex flex-col items-center gap-4 mt-10">
+							<div className="icon"><img className='w-18 bg-amber-300/5 rounded-2xl' src={lupa} alt="Search" /></div>
+							<h2 className='text-xl text-white font-semibold'>1. Search</h2>
+							<p className='flex text-center mx-4 text-zinc-400'>Browse through hundreds of verified spaces tailored to your needs and location</p>
+						</div>
+						<div className="step flex flex-col items-center gap-4 mt-10">
+							<div className="icon"><img className='w-18 bg-amber-300/5 rounded-2xl' src={checkmark} alt="Search" /></div>
+							<h2 className='text-xl text-white font-semibold'>2. Choose</h2>
+							<p className='flex text-center mx-4 text-zinc-400'>Compare amenities, prices, and availability to find your ideal workspace</p>
+						</div>
+						<div className="step flex flex-col items-center gap-4 mt-10">
+							<div className="icon"><img className='w-18 bg-amber-300/5 rounded-2xl' src={time} alt="Search" /></div>
+							<h2 className='text-xl text-white font-semibold'>3. Book</h2>
+							<p className='flex text-center mx-4 text-zinc-400'>Instant confirmation and seamless check-in. Start working immediately</p>
+						</div>
+					</div>
+				</section>
+				{/* Сюда загружать отзывы */}
+				<section className='mt-30' >
+					<div className=''>
+						<div className='content flex text-white flex-col text-center' >
+							<h1 className='text-4xl font-semibold' >What our users say</h1>
+							<p className='text-zinc-500 mt-4' >Trusted by professionals across industries</p>
+						</div>
+						{/* Заглушка, просто для вида */}
+						<div className="flex  justify-center my-10 ">
+
+							<div className="bg-[#1a2332] rounded-2xl  p-6 max-w-sm shadow-lg">
+								<div className="flex gap-1 mb-4">
+									{[...Array(5)].map((_, i) => (
+										<span key={i} className="text-yellow-400 text-xl">★</span>
+									))}
+								</div>
+
+								<p className="text-white text-base leading-relaxed mb-6">
+									BookIt made finding the perfect meeting space incredibly easy. The booking process was seamless!
+								</p>
+
+								<div className="flex items-center gap-3">
+									<div className="w-10 h-10 rounded-full bg-[#2a3d55] flex items-center justify-center flex-shrink-0">
+										<svg className="w-5 h-5 text-[#4a90b8]" fill="currentColor" viewBox="0 0 24 24">
+											<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+										</svg>
+									</div>
+									<div>
+										<p className="text-white font-semibold text-sm">Sarah Chen</p>
+										<p className="text-gray-400 text-xs">Product Manager</p>
+									</div>
+								</div>
+							</div>
+							);
+
+						</div>
+					</div>
+				</section>
+				<footer className='bg-[#242328] pt-4'>
+
+					<div className='content flex text-white flex-col mt-20 text-center' >
+						<h1 className='text-4xl font-semibold mx-10' >Ready to find your perfect space?</h1>
+						<p className='text-zinc-500 mt-4 mx-20' >Join thousands of professionals who trust BookIt for their workspace needs</p>
+					</div>
+					<div className="start-bth mx-auto flex justify-center py-10">
+						<button className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-8 rounded-xl text-lg transition active:scale-95 shadow-md shadow-amber-400/50">
+							Start Booking
+						</button>
+					</div>
+				</footer>
 			</div>
 		</>
 	)
