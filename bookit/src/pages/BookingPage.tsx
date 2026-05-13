@@ -83,7 +83,7 @@ const amenityIcons: Record<string, string> = {
 	Kitchen: '🍳',
 }
 
-export default function SpacesPage() {
+export default function BookingPage() {
 	const [priceRange, setPriceRange] = useState(200)
 	const [capacity, setCapacity] = useState('')
 	const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
@@ -120,8 +120,8 @@ export default function SpacesPage() {
 			<div className="px-6 pt-8 pb-4 md:px-12">
 				<div className="flex items-center justify-between">
 					<div>
-						<h1 className="text-white text-3xl font-bold">Available Spaces</h1>
-						<p className="text-zinc-400 text-sm mt-1">{filtered.length} spaces found</p>
+						<h1 className="text-white text-3xl font-bold">Booking</h1>
+						<p className="text-zinc-400 text-sm mt-1">{filtered.length} найдено</p>
 					</div>
 					<div className="flex items-center gap-2">
 						<button

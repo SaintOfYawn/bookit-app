@@ -201,7 +201,7 @@ export default function MainPage() {
 					</div>
 					<div className="start-bth mx-auto flex justify-center py-10">
 						<button
-							onClick={() => navigate('/spaces')}
+							onClick={() => navigate('/booking')}
 							className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-8 rounded-xl text-lg transition active:scale-95 shadow-md shadow-amber-400/50"
 						>
 							Start Booking

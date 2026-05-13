@@ -16,7 +16,7 @@ export default function Header() {
 
 					<div className="hidden md:flex items-center gap-6">
 						<Link to="/" className="text-white hover:text-[#f5a623] transition font-medium">Home</Link>
-						<Link to="/spaces" className="text-white hover:text-[#f5a623] transition font-medium">Bookings</Link>
+						<Link to="/booking" className="text-white hover:text-[#f5a623] transition font-medium">Booking</Link>
 						<Link to="/admin" className="text-white hover:text-[#f5a623] transition font-medium">Admin</Link>
 						<Search />
 					</div>
