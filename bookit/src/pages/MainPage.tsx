@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import API from '../API/api'
 import checkmark from '../assets/checkmark.png'
 import lupa from '../assets/lupa.png'
 import time from '../assets/time.png'
 import Bug from '../components/bug'
 export default function MainPage() {
+	const navigate = useNavigate()
 	interface Listing {
 		id: number
 		title: string
@@ -198,7 +200,10 @@ export default function MainPage() {
 						<p className='text-zinc-500 mt-4 mx-20' >Join thousands of professionals who trust BookIt for their workspace needs</p>
 					</div>
 					<div className="start-bth mx-auto flex justify-center py-10">
-						<button className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-8 rounded-xl text-lg transition active:scale-95 shadow-md shadow-amber-400/50">
+						<button
+							onClick={() => navigate('/spaces')}
+							className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-8 rounded-xl text-lg transition active:scale-95 shadow-md shadow-amber-400/50"
+						>
 							Start Booking
 						</button>
 					</div>

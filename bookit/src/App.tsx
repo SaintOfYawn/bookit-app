@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/header'
 import AdminPage from './pages/AdminPage'
 import MainPage from './pages/MainPage'
+import SpacesPage from './pages/SpacesPage'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/spaces" element={<SpacesPage />} />
         <Route path="*" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
