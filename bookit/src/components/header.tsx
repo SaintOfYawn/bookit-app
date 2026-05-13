@@ -24,8 +24,6 @@ export default function Header() {
 					</div>
 
 					<div className="hidden md:flex items-center gap-6">
-						<Link to="/" className="text-white hover:text-[#f5a623] transition font-medium">Home</Link>
-						<Link to="/booking" className="text-white hover:text-[#f5a623] transition font-medium">Booking</Link>
 						{user?.role === 'admin' && (
 							<Link to="/admin" className="text-white hover:text-[#f5a623] transition font-medium">Admin</Link>
 						)}
