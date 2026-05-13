@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import avatar from '../assets/avatar.png'
+import avatar from '../assets/Avatar.png'
 import logo from '../assets/logo.png'
 import Search from './search'
 
